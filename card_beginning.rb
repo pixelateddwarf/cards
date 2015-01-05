@@ -7,18 +7,15 @@
 # ---------------------------- #
 
 class Card
-  attr_accessor :rank, :suit                           ## expose ourselves to the public
+  attr_accessor :rank, :suit       ## expose ourselves to the public
 
-  RANK = w%[ 2 3 4 5 6 7 8 9 10 Jack Queen King Ace ]  ## 13 ranks   w% white space delimiated
-  SUIT = w%[ Spades Hearts Clubs Diamonds ]            ## 4  suits
-
-  def initialize (id)
-    self.rank = RANK[id % 13]
-    self.suit = SUIT[id % 4]
+  def initialize (rank, suit)
+    @rank = rank
+    @suit = suit
   end
 
   def output_card
-    puts "#{self.rank} of #{self.suit}"                ## same as "#{@rank} of #{@suit}" 
+    puts "#{self.rank} of #{self.suit}"   ## same as "#{@rank} of #{@suit}" 
   end
 
   def self.random_card
@@ -27,8 +24,7 @@ class Card
 end
 
 class Deck
-    attr_accessor :cards
-  
+
   def initialize
     @cards = []
     @cards << Card.new(10, :spades)
