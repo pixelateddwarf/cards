@@ -12,9 +12,9 @@ class Card
   RANK = w%[ 2 3 4 5 6 7 8 9 10 Jack Queen King Ace ]  ## 13 ranks   w% white space delimiated
   SUIT = w%[ Spades Hearts Clubs Diamonds ]            ## 4  suits
 
-  def initialize (id)
-    self.rank = RANK[id % 13]
-    self.suit = SUIT[id % 4]
+  def initialize(rank, suit)
+    self.rank = rank
+    self.suit = suit
   end
 
   def output_card
@@ -27,12 +27,18 @@ class Card
 end
 
 class Deck
-    attr_accessor :cards
+    attr_accessor :cards                               ## expose ourselves to the public
   
   def initialize
     @cards = []
-    @cards << Card.new(10, :spades)
-    @cards << Card.new(9, :diamonds)
+    #@cards << Card.new(10, :spades)
+    #@cards << Card.new(9, :diamonds)
+    Card::RANK.each do |rank|
+         Card::SUIT.each do |suit|
+           @cards << Card.new(rank, suit)
+         end
+   end
+
   end
 
   def shuffle
